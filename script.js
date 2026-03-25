@@ -84,7 +84,7 @@ ReactDOM.render(React.createElement(StarrySky, null), document.getElementById("r
   
   const _startDate = new Date('2026-03-25'); _startDate.setHours(0, 0, 0, 0);
   const _today = new Date(); _today.setHours(0, 0, 0, 0);
-  const _daysElapsed = Math.max(0, Math.floor((_today - _startDate) / 86400000));
+  const _daysElapsed = Math.max(0, Math.floor((_today - _startDate) / 86400000)) + 1;
   const _birdCount = Math.min(85 + _daysElapsed, 1024); 
   o.numRatio = _birdCount / (32 * 32);
 
