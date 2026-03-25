@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Asap", 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  transition: background 1s ease;
+}
+
+/* Pembe Tema */
+body.theme-pink {
+  background: linear-gradient(to bottom, #FF9CB5 0%, #FFB8C9 50%, #FFD1DC 100%);
+  color: white;
+}
+
+/* Siyah/Galaksi Teması */
+body.theme-black {
+  background: black;
+  color: white;
+}
+
+/* --- SİHİRLİ TETİKLEYİCİ CSS --- */
+#magic-trigger {
+  position: absolute;
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%); 
+  z-index: 1000;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.8s ease;
+}
+
+.magic-star {
+  font-size: 40px;
+  color: white;
+  display: block;
+  filter: drop-shadow(0 0 10px white);
+  animation: pulseStar 2s infinite ease-in-out;
+}
+
+@keyframes pulseStar {
+  0% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 5px white); }
+  50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 20px white); }
+  100% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 5px white); }
+}
+
+/* --- GERİ DÖNÜŞ BUTONU CSS (YENİ) --- */
+#back-trigger {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 1000;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+#back-trigger:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15); 
+  backdrop-filter: blur(5px);
+  transform: scale(1.1);
+}
+
+/* --- PEMBE SAHNE CSS --- */
+#sky {
+  width: 100vw; height: 100vh;
+  position: fixed; overflow: hidden; z-index: -2;
+}
+
+#shootingstars {
+  width: 150vh; height: 100vw;
+  position: fixed; overflow: hidden;
+  transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(120deg);
+  z-index: -1; 
+}
+
+.wish {
+  height: 2px; top: 300px; width: 100px; opacity: 0; position: absolute;
+  background: linear-gradient(-45deg, white, rgba(255, 156, 181, 0));
+  filter: drop-shadow(0 0 6px white); overflow: hidden;
+}
+
+#canvas-birds {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 1; pointer-events: none;
+}
+
+/* --- ORİJİNAL GALAKSİ SAHNE CSS --- */
+#canvas-galaxy {
+  display: block; width: 100%; height: 100%;
+  position: fixed; top: 0; left: 0;
+}
+
+#star-counter {
+  position: absolute;
+  bottom: 15px; right: 15px;
+  color: #ffffff; 
+  background: rgba(255, 255, 255, 0.1); 
+  padding: 4px 10px; 
+  font-size: 0.75rem; 
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  border-radius: 0px; 
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  pointer-events: none;
+  backdrop-filter: blur(5px); 
+  z-index: 100;
+  text-transform: uppercase;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
