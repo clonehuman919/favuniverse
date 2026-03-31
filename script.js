@@ -1,9 +1,10 @@
 // ==========================================
-// === KÜTÜPHANELER (GÜVENLİ CDN GEÇİŞİ) ===
+// === KÜTÜPHANELER (ÇATIŞMAYI ÖNLEDİK) ===
 // ==========================================
-import { AdditiveBlending, BufferAttribute, BufferGeometry, CanvasTexture, Color, PerspectiveCamera, Points, RawShaderMaterial, Scene, WebGLRenderer, Vector3, DoubleSide, Mesh, ShaderMaterial, HalfFloatType, RepeatWrapping, MathUtils } from "three-old";
-import { OrbitControls } from "three-old/addons/controls/OrbitControls.js";
-import * as TWEEN from "tween";
+// GALAXY İÇİN (Senin kullandığın orijinal Skypack CDN - Sürüm 0.136.0)
+import { AdditiveBlending, BufferAttribute, BufferGeometry, CanvasTexture, Color, PerspectiveCamera, Points, RawShaderMaterial, Scene, WebGLRenderer } from "https://cdn.skypack.dev/three@0.136.0"
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls"
+import { TWEEN } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/libs/tween.module.min.js"
 
 // PEMBE SAHNE İÇİN (Importmap CDN - Sürüm 0.162.0)
 import * as THREE from "three";
