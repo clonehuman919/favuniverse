@@ -16,9 +16,9 @@ html, body {
   transition: background 1s ease;
 }
 
-/* Pembe Tema */
+/* Pembe Tema - Gün batımı tarzı arka plan */
 body.theme-pink {
-  background: linear-gradient(to bottom, #FF9CB5 0%, #FFB8C9 50%, #FFD1DC 100%);
+  background: linear-gradient(to bottom, #FF9CB5 0%, #E39377 100%);
   color: white;
 }
 
