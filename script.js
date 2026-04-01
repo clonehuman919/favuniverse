@@ -1,17 +1,17 @@
 // ==========================================
-// === KÜTÜPHANELER (ÇATIŞMAYI ÖNLEDİK) ===
+// === LIBRARIES (CONFLICTS AVOIDED) ===
 // ==========================================
-// GALAXY İÇİN (Çöken Skypack yerine Unpkg CDN - Sürüm 0.136.0 kullanıldı)
+// FOR GALAXY (Using Unpkg CDN instead of broken Skypack - Version 0.136.0)
 import { AdditiveBlending, BufferAttribute, BufferGeometry, CanvasTexture, Color, PerspectiveCamera, Points, RawShaderMaterial, Scene, WebGLRenderer } from "https://unpkg.com/three@0.136.0/build/three.module.js"
 import { OrbitControls } from "https://unpkg.com/three@0.136.0/examples/jsm/controls/OrbitControls.js"
 import { TWEEN } from "https://unpkg.com/three@0.136.0/examples/jsm/libs/tween.module.min.js"
 
-// PEMBE SAHNE İÇİN (Importmap CDN - Sürüm 0.162.0)
+// FOR PINK SCENE (Importmap CDN - Version 0.162.0)
 import * as THREE from "three";
 import { GPUComputationRenderer } from "three/addons/misc/GPUComputationRenderer.js";
 
 // ==========================================
-// === ARAYÜZ VE SAHNE GEÇİŞ KONTROLÜ ===
+// === INTERFACE AND SCENE TRANSITION CONTROL ===
 // ==========================================
 const magicBtn = document.getElementById('magic-trigger');
 const backBtn = document.getElementById('back-trigger');
@@ -19,35 +19,35 @@ const pinkScene = document.getElementById('scene-pink');
 const galaxyScene = document.getElementById('scene-galaxy');
 window.currentActiveScene = 'pink';
 
-// 1. Sihirli Yıldıza Tıklanınca (Galaksiye Geç)
+// 1. On Magic Star Click (Switch to Galaxy)
 magicBtn.addEventListener('click', () => {
   document.body.className = 'theme-black';
   pinkScene.style.display = 'none';
   galaxyScene.style.display = 'block';
   
-  // Arayüz geçişi
-  magicBtn.style.display = 'none'; // Yıldızı gizle
-  backBtn.style.display = 'flex';  // Geri okunu göster
+  // Interface transition
+  magicBtn.style.display = 'none'; // Hide star
+  backBtn.style.display = 'flex';  // Show back arrow
   
   window.currentActiveScene = 'galaxy';
 });
 
-// 2. Geri Okuna Tıklanınca (Kuşlara Dön)
+// 2. On Back Arrow Click (Return to Birds)
 backBtn.addEventListener('click', () => {
   document.body.className = 'theme-pink';
   galaxyScene.style.display = 'none';
   pinkScene.style.display = 'block';
   
-  // Arayüz geçişi
-  backBtn.style.display = 'none';   // Geri okunu gizle
-  magicBtn.style.display = 'block'; // Yıldızı tekrar göster
+  // Interface transition
+  backBtn.style.display = 'none';   // Hide back arrow
+  magicBtn.style.display = 'block'; // Show star again
   
   window.currentActiveScene = 'pink';
 });
 
 
 // ==========================================
-// === 1. REACT & ANIME.JS YILDIZ KODLARI (PEMBE SAHNE) ===
+// === 1. REACT & ANIME.JS STAR CODES (PINK SCENE) ===
 // ==========================================
 function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} 
 
@@ -74,7 +74,7 @@ ReactDOM.render(React.createElement(StarrySky, null), document.getElementById("r
 
 
 // ==========================================
-// === 2. THREE.JS KUŞ KODLARI (PEMBE SAHNE) ===
+// === 2. THREE.JS BIRD CODES (PINK SCENE) ===
 // ==========================================
 !(function () {
   const canvasBirds = document.getElementById('canvas-birds');
@@ -172,7 +172,7 @@ ReactDOM.render(React.createElement(StarrySky, null), document.getElementById("r
   
   (function e() {
     requestAnimationFrame(e);
-    if(window.currentActiveScene !== 'pink') return; // Sadece pembe sahne açıksa çalışsın
+    if(window.currentActiveScene !== 'pink') return; // Run only if pink scene is active
 
     const now = performance.now();
     let n = (now - T) / 1e3;
@@ -188,19 +188,19 @@ ReactDOM.render(React.createElement(StarrySky, null), document.getElementById("r
 
 
 // ==========================================
-// === 3. THREE.JS GALAKSİ KODLARI (TAMAMEN ORİJİNAL) ===
+// === 3. THREE.JS GALAXY CODES (ORIGINAL) ===
 // ==========================================
 
-// --- ZAMAN VE YILDIZ HESABI ---
+// --- TIME AND STAR CALCULATION ---
 const startDate = new Date("2004-09-12");
 const today = new Date();
 const diffInMs = today - startDate;
 const starCount = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
 
-// Sayacı ekrana yazdır (Beyaz tema ile uyumlu)
+// Print counter to screen (Compatible with white theme)
 document.getElementById('star-counter').innerText = `STARS: ${starCount.toLocaleString()}`;
 
-// --- SAHNE KURULUMU ---
+// --- SCENE SETUP ---
 const canvas = document.querySelector('#canvas-galaxy');
 const scene = new Scene()
 const camera = new PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100)
@@ -391,7 +391,7 @@ const universe = new Points(universeGeometry, universeMaterial)
 universe.material.onBeforeCompile = (sh) => sh.vertexShader = sh.vertexShader.replace("#include <random, scatter>", shaderUtils)
 scene.add(universe)
 
-// --- AÇILIŞ ANİMASYONU ---
+// --- STARTUP ANIMATION ---
 new TWEEN.Tween({ s: 0, r: 0, sp: 0, rnd: 0, rot: 0 })
 .to({ s: 1.34, r: 1.618, sp: -11.68, rnd: 0.7, rot: Math.PI * 4 }, 5000)
 .easing(TWEEN.Easing.Cubic.InOut)
@@ -405,7 +405,7 @@ new TWEEN.Tween({ s: 0, r: 0, sp: 0, rnd: 0, rot: 0 })
 }).start()
 
 renderer.setAnimationLoop(() => {
-  // Sadece galaksi sahnesi açıksa animasyonu oynat
+  // Play animation only if galaxy scene is active
   if (window.currentActiveScene === 'galaxy') {
     galaxyMaterial.uniforms.uTime.value += 0.0005
     universeMaterial.uniforms.uTime.value += 0.0003
